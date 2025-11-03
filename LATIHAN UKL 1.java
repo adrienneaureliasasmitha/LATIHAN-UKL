@@ -4,11 +4,14 @@ public class App {
     public static void main(String[] args) throws Exception {
   Scanner input = new Scanner(System.in);
 
-//SOAL 1 NOMOR 1 
+  // Bagian 1: Perhitungan Biaya Ekspedisi
+        
+        System.out.println("=== PROGRAM PERHITUNGAN BIAYA EKSPEDISI ===");
+
         System.out.print("Masukkan berat paket (kg): ");
         double berat = input.nextDouble();
 
-        System.out.print("Masukkan jarak pengiriman (km): ");
+        System.out.print("Masukkan jarak tempuh (km): ");
         double jarak = input.nextDouble();
 
         System.out.print("Masukkan panjang paket (cm): ");
@@ -21,28 +24,25 @@ public class App {
         double tinggi = input.nextDouble();
 
         double volume = panjang * lebar * tinggi;
+        double biayaPerKg;
 
-        double tarifPerKg;
+        // Menentukan biaya per kg berdasarkan jarak
         if (jarak <= 10) {
-            tarifPerKg = 4250;
+            biayaPerKg = 4250;
         } else {
-            tarifPerKg = 6000;
+            biayaPerKg = 6000;
         }
 
-        double biayaBerat = berat * tarifPerKg;
-        double biayaVolume = (volume > 100) ? 50000 : 0;
-        double totalBiaya = biayaBerat + biayaVolume;
+        double biaya = berat * biayaPerKg;
 
-        System.out.println("\n--- Rincian Biaya Pengiriman ---");
-        System.out.println("Berat paket   : " + berat + " kg");
-        System.out.println("Jarak tempuh  : " + jarak + " km");
-        System.out.println("Volume paket  : " + volume + " cm³");
-        System.out.println("Biaya per kg  : Rp " + tarifPerKg);
-        System.out.println("Biaya berat   : Rp " + biayaBerat);
-        System.out.println("Biaya volume  : Rp " + biayaVolume);
-        System.out.println("Total biaya   : Rp " + totalBiaya);
+        // Tambahan biaya volume
+        if (volume > 100) {
+            biaya += 50000;
+        }
 
-         input.close();       
-        
+        System.out.println("\n=== HASIL PERHITUNGAN ===");
+        System.out.println("Volume paket : " + volume + " cm^3");
+        System.out.println("Biaya kirim  : Rp " + biaya);
     }
 }
+
